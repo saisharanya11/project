@@ -1,0 +1,53 @@
+package com.tyss.SDBMS.view;
+import java.util.Scanner;
+
+import com.tyss.SDBMS.controller.SDBMS;
+import com.tyss.SDBMS.controller.SDBMSimpl;
+
+public class User { 
+	public static void main(String[] args) {
+		SDBMS s = new SDBMSimpl();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("WELCOME TO JSPIDER");
+		boolean flag = true;
+		while(flag) {
+			System.out.println("***************************************");
+			System.out.println("1.Add student \n 2.Search student \n 3.Display all students\n4.Remove student \n 5.Count student \n6.Sort student\n7.Update student marks\n8.Exit");
+	        System.out.println("Enter your choice");
+	        int choice=sc.nextInt();
+	        switch(choice) {
+	        case 1 : {
+	        	s.addStudent();
+	                 }break;
+	        case 2 : {
+	        	s.searchStudent();
+	                  }break;
+	        case 3 : {
+	        	s.displayAllStudent();
+	                 }break;
+	        case 4 : {
+	        	s.removeStudent();
+	                 }break;
+	        case 5 : {
+	        	s.countStudent();
+	                 }break;
+	        case 6 : {
+	        	s.sortStudent();
+	                 }break;
+	        case 7 : {
+	        	s.updateStudentMarks();
+	                 }break;
+	        case 8 : {
+	        	flag=false;
+	        	System.out.println("Thank you...");
+	                 }break;
+	        default : {
+	        	System.out.println("enter valid choice");
+	              }
+	        
+	        }
+		}
+		
+	}
+
+}
