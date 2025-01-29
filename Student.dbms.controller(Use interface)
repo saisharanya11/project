@@ -1,0 +1,129 @@
+package com.tyss.SDBMS.controller;
+import java.util.LinkedHashMap;
+
+import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
+import com.tyss.SDBMS.SortByName.SorteByName;
+import  com.tyss.SDBMS.controller.StudentNotFounfException;
+import com.tyss.SDBMS.model.Student;
+public class SDBMSimpl implements SDBMS{
+
+	private static final Object Sid = null;
+	//DATABASE
+	LinkedHashMap<Integer, Student> db = new LinkedHashMap<Integer, Student>();
+	Scanner sc = new Scanner (System.in);
+	
+	@Override
+	public void addStudent() {
+		System.out.println("Enter student name");
+		String name = sc.next();
+		System.out.println("Enter student age");
+		int age = sc.nextInt();
+		System.out.println("Enter student marks");
+		double marks = sc.nextDouble();
+		Student s = new Student(name, age,marks);
+		//STORING STUDENT INSIDE DB
+		db.put(s.getSid(), s);
+		System.out.println("STUDENT ADD SUCESSFULLY...");
+		
+	}
+
+	@Override
+	public void searchStudent() {
+		System.out.println("enter student id");
+		int Sid=sc.nextInt();
+		if(db.containsKey(Sid)) {
+			Student s=db.get(Sid);
+			System.out.println(db.get(Sid));
+		}
+		else {
+			try {
+				new StudentNotFounfException("student not found");
+			}
+			catch(Exception e) {
+				System.out.println(e.getMessage());
+				
+			}
+		}
+		
+	}
+
+	@Override
+	public void displayAllStudent() {
+		Set<Integer> s =db.keySet();
+		for(Integer ele :s) {
+			System.out.println(db.get(ele));
+		}
+		
+	}
+
+	@Override
+	public void countStudent() {
+		System.out.println("the number od student is :" + db.size());
+	}
+
+	@Override
+	public void sortStudent() {
+		TreeSet<Student> t = new  TreeSet<Student>(new SorteByName());
+		Set<Integer> s =db.keySet();
+		for(Integer ele : s) {
+			t.add(db.get(ele));
+		}
+		for(Student ele :t) {
+			System.out.println(ele);
+		}
+		
+	}
+
+	@Override
+	public void removeStudent() {
+		System.out.println("enter sid");
+		int Sid = sc.nextInt();
+		if(db.containsKey(Sid)) {
+			System.out.println(db.get(Sid));
+			System.out.println("do you want to remove student details");
+			System.out.println("1.Yes \n 2.No");
+			int choice =sc.nextInt();
+			if(choice ==1) {
+				db.remove(Sid);
+				System.out.println("Student removed Sucessfully...");
+			}
+			else {
+				System.out.println("Student not removed..");
+				
+			}
+		}
+		else 
+		{
+			System.out.println("Student not found..");
+		}
+	}
+    @Override
+	public void updateStudentMarks() {
+	  System.out.println("ENTER STUDENT ID");
+	  int Sid = sc.nextInt();
+	  if(db.containsKey(Sid)) {
+		  Student s= db.get(Sid);
+	  System.out.println(s);
+			System.out.println("Old marks is :" +s.getMarks());
+			System.out.println("Enter new marks");
+			double marks=sc.nextDouble();
+			s.setMarks(marks);
+			System.out.println("Marks is  Updated");
+			System.out.println(s);
+	    }else {
+	    	System.out.println("Marks are not updated");
+	    	
+	    }
+		
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+	}
+
+}
