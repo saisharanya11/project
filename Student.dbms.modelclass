@@ -1,0 +1,64 @@
+package com.tyss.SDBMS.model;
+
+public class Student {
+
+	private String name;
+	private int age;
+	private int Sid;
+	private double marks;
+	static int id=101;
+	public Student(String name, int age, double marks) {
+		this.name = name;
+		this.age = age;
+		this.marks = marks;
+		Sid=id;
+		id++;
+	}
+	@Override
+	public String toString() {
+		return "Student [name=" + name + ", age=" + age + ", sid=" + Sid + ", marks=" + marks + "]";
+	}
+	@Override
+	public int hashCode() {
+		return Sid;
+	}
+	@Override
+	public boolean equals(Object o) {
+		Student s=(Student) o;
+		return this.Sid== s.Sid;
+		
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public int getSid() {
+		return Sid;
+	}
+	public void setSid(int sid) {
+		Sid = sid;
+	}
+	public double getMarks() {
+		return marks;
+	}
+	public void setMarks(double marks) {
+		this.marks = marks;
+	}
+	public static int getId() {
+		return id;
+	}
+	public static void setId(int id) {
+		Student.id = id;
+	}
+	
+	
+	
+}
