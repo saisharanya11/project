@@ -1,0 +1,15 @@
+package com.tyss.SDBMS.controller;
+
+public class StudentNotFounfException extends Exception {
+
+	private String message;
+
+	 public StudentNotFounfException(String message) {
+		this.message = message;
+	}
+	public String getMesaage() {
+		return message;
+	}
+
+
+}
